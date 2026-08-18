@@ -1,0 +1,23 @@
+<h1>Category: <%= category.name %></h1>
+<p><%= category.description %></p>
+
+<h2>Items in this Category</h2>
+<% if (items.length > 0) { %>
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <a href="/items/<%= item.id %>"><%= item.name %></a> - $<%= item.price %> (In stock: <%= item.number_in_stock %>)
+      </li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <p>No items found in this category.</p>
+<% } %>
+
+<a href="/categories/<%= category.id %>/update">Edit Category</a> |
+<a href="/categories/<%= category.id %>/delete">Delete Category</a>
+<br><br>
+<a href="/items/create">Add New Item</a> |
+<a href="/items">View All Items</a>
+<br><br>
+<a href="/categories">Back to Categories</a>

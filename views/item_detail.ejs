@@ -1,0 +1,10 @@
+<h1><%= item.name %></h1>
+<p><strong>Category:</strong> <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a></p>
+<p><strong>Description:</strong> <%= item.description %></p>
+<p><strong>Price:</strong> $<%= item.price %></p>
+<p><strong>Stock Quantity:</strong> <%= item.number_in_stock %></p>
+
+<a href="/items/<%= item.id %>/update">Edit Item</a> | 
+<a href="/items/<%= item.id %>/delete">Delete Item</a>
+<br><br>
+<a href="/items">Back to All Items</a>

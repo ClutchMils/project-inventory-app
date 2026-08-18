@@ -1,0 +1,19 @@
+<h1>Delete Category: <%= category.name %></h1>
+
+<% if (category_items.length > 0) { %>
+  <p><strong>You must delete or reassign the following items before deleting this category:</strong></p>
+  <ul>
+    <% category_items.forEach(item => { %>
+      <li>
+        <a href="/items/<%= item.id %>"><%= item.name %></a>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/categories/<%= category.id %>">Back to Category</a>
+<% } else { %>
+  <p>Are you sure you want to delete this category?</p>
+  <form method="POST" action="">
+    <button type="submit">Yes, Delete</button>
+  </form>
+  <a href="/categories/<%= category.id %>">Cancel</a>
+<% } %>

@@ -1,0 +1,10 @@
+<h1><%= title %></h1>
+<ul>
+  <% items.forEach(item => { %>
+    <li>
+      <a href="/items/<%= item.id %>"><%= item.name %></a> 
+      - Category: <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a>
+    </li>
+  <% }) %>
+</ul>
+<a href="/items/create">Add New Item</a>
