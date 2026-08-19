@@ -1,23 +1,11 @@
-<h1>Category: <%= category.name %></h1>
-<p><%= category.description %></p>
-
-<h2>Items in this Category</h2>
-<% if (items.length > 0) { %>
-  <ul>
-    <% items.forEach(item => { %>
-      <li>
-        <a href="/items/<%= item.id %>"><%= item.name %></a> - $<%= item.price %> (In stock: <%= item.number_in_stock %>)
-      </li>
-    <% }) %>
-  </ul>
-<% } else { %>
-  <p>No items found in this category.</p>
-<% } %>
-
-<a href="/categories/<%= category.id %>/update">Edit Category</a> |
-<a href="/categories/<%= category.id %>/delete">Delete Category</a>
-<br><br>
-<a href="/items/create">Add New Item</a> |
-<a href="/items">View All Items</a>
-<br><br>
-<a href="/categories">Back to Categories</a>
+<%- include("partials/header") %>
+<section class="detail-hero">
+  <p class="eyebrow">Category</p>
+  <h1 class="page-heading"><%= category.name %></h1>
+  <p class="lead"><%= category.description || "No description yet." %></p>
+  <div class="toolbar"><a class="button" href="/items/create">+ Add item</a><a class="button secondary" href="/categories/<%= category.id %>/update">Edit category</a><a class="button danger" href="/categories/<%= category.id %>/delete">Delete</a></div>
+</section>
+<h2 class="section-heading">Items in this category</h2>
+<% if (items.length > 0) { %><ul class="item-list"><% items.forEach(item => { %><li class="item-row"><div><a href="/items/<%= item.id %>"><strong><%= item.name %></strong></a><small>In stock: <%= item.number_in_stock %></small></div><span class="price">$<%= item.price %></span></li><% }) %></ul><% } else { %><section class="notice-card"><h2>Nothing here yet</h2><p>Add the first item to <%= category.name %>.</p></section><% } %>
+<div class="toolbar"><a class="button secondary" href="/categories">← All categories</a><a class="button secondary" href="/items">View all items</a></div>
+<%- include("partials/footer") %>

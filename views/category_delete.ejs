@@ -1,19 +1,13 @@
-<h1>Delete Category: <%= category.name %></h1>
-
-<% if (category_items.length > 0) { %>
-  <p><strong>You must delete or reassign the following items before deleting this category:</strong></p>
-  <ul>
-    <% category_items.forEach(item => { %>
-      <li>
-        <a href="/items/<%= item.id %>"><%= item.name %></a>
-      </li>
-    <% }) %>
-  </ul>
-  <a href="/categories/<%= category.id %>">Back to Category</a>
-<% } else { %>
-  <p>Are you sure you want to delete this category?</p>
-  <form method="POST" action="">
-    <button type="submit">Yes, Delete</button>
-  </form>
-  <a href="/categories/<%= category.id %>">Cancel</a>
-<% } %>
+<%- include("partials/header") %>
+<section class="notice-card <%= category_items.length > 0 ? 'warning' : 'danger' %>">
+  <p class="eyebrow">Delete category</p><h1 class="page-heading">Remove <%= category.name %>?</h1>
+  <% if (category_items.length > 0) { %>
+    <p class="lead">Move or delete these items first. Categories with items cannot be removed.</p>
+    <ul class="item-list"><% category_items.forEach(item => { %><li class="item-row"><a href="/items/<%= item.id %>"><strong><%= item.name %></strong></a><a class="button secondary" href="/items/<%= item.id %>/update">Edit item</a></li><% }) %></ul>
+    <div class="toolbar"><a class="button secondary" href="/categories/<%= category.id %>">← Back to category</a></div>
+  <% } else { %>
+    <p class="lead">This action permanently removes the category.</p>
+    <form method="POST" action=""><div class="form-actions"><button class="danger" type="submit">Yes, delete category</button><a class="button secondary" href="/categories/<%= category.id %>">Keep category</a></div></form>
+  <% } %>
+</section>
+<%- include("partials/footer") %>

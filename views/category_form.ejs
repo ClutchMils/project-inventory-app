@@ -1,23 +1,10 @@
-<h1><%= title %></h1>
-
-<form method="POST" action="">
-  <div>
-    <label for="name">Category Name:</label>
-    <input 
-      type="text" 
-      id="name" 
-      name="name" 
-      required 
-      value="<%= category ? category.name : '' %>"
-    />
-  </div>
-
-  <div>
-    <label for="description">Description:</label>
-    <textarea id="description" name="description"><%= category ? category.description : '' %></textarea>
-  </div>
-
-  <button type="submit">Submit</button>
-</form>
-
-<a href="/categories">Cancel</a>
+<%- include("partials/header") %>
+<section class="form-card">
+  <p class="eyebrow">Category</p><h1><%= title %></h1>
+  <form method="POST" action="">
+    <div><label for="name">Category name</label><input type="text" id="name" name="name" required value="<%= category ? category.name : '' %>" /></div>
+    <div><label for="description">Description</label><textarea id="description" name="description" placeholder="What belongs in this category?"><%= category ? category.description || '' : '' %></textarea></div>
+    <div class="form-actions"><button type="submit">Save category</button><a class="button secondary" href="/categories">Cancel</a></div>
+  </form>
+</section>
+<%- include("partials/footer") %>

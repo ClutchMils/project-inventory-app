@@ -1,10 +1,7 @@
-<h1><%= title %></h1>
-<ul>
-  <% items.forEach(item => { %>
-    <li>
-      <a href="/items/<%= item.id %>"><%= item.name %></a> 
-      - Category: <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a>
-    </li>
-  <% }) %>
-</ul>
-<a href="/items/create">Add New Item</a>
+<%- include("partials/header") %>
+<p class="eyebrow">Full inventory</p>
+<h1 class="page-heading">All grocery items</h1>
+<p class="lead">A quick look at everything currently in your inventory.</p>
+<div class="toolbar"><a class="button" href="/items/create">+ Add new item</a><a class="button secondary" href="/categories">Browse categories</a></div>
+<% if (items.length > 0) { %><ul class="item-list"><% items.forEach(item => { %><li class="item-row"><div><a href="/items/<%= item.id %>"><strong><%= item.name %></strong></a><small>in <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a></small></div><span class="price">$<%= item.price %></span></li><% }) %></ul><% } else { %><section class="notice-card"><h2>No items yet</h2><p>Add an item to begin building your inventory.</p></section><% } %>
+<%- include("partials/footer") %>

@@ -1,12 +1,20 @@
-<h1><%= title %></h1>
-<ul>
-  <% categories.forEach(category => { %>
-    <li>
-      <a href="/categories/<%= category.id %>"><%= category.name %></a>
-      <p><%= category.description %></p>
-    </li>
-  <% }) %>
-</ul>
-<a href="/categories/create">Add New Category</a> |
-<a href="/items/create">Add New Item</a> |
-<a href="/items">View All Items</a>
+<%- include("partials/header") %>
+<p class="eyebrow">Inventory dashboard</p>
+<h1 class="page-heading">Everything has a place.</h1>
+<p class="lead">Browse your pantry by category, keep stock visible, and make updates in a few clicks.</p>
+
+<div class="toolbar">
+  <a class="button" href="/categories/create">+ New category</a>
+  <a class="button secondary" href="/items/create">+ New item</a>
+</div>
+
+<% if (categories.length > 0) { %>
+  <ul class="card-grid">
+    <% categories.forEach(category => { %>
+      <li><a class="card" href="/categories/<%= category.id %>"><span class="icon">◒</span><h2><%= category.name %></h2><p><%= category.description || "No description yet." %></p><span class="arrow">→</span></a></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+  <section class="notice-card"><h2>No categories yet</h2><p>Create your first category to start organizing inventory.</p></section>
+<% } %>
+<%- include("partials/footer") %>

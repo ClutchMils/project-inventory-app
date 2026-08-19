@@ -1,10 +1,10 @@
-<h1><%= item.name %></h1>
-<p><strong>Category:</strong> <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a></p>
-<p><strong>Description:</strong> <%= item.description %></p>
-<p><strong>Price:</strong> $<%= item.price %></p>
-<p><strong>Stock Quantity:</strong> <%= item.number_in_stock %></p>
-
-<a href="/items/<%= item.id %>/update">Edit Item</a> | 
-<a href="/items/<%= item.id %>/delete">Delete Item</a>
-<br><br>
-<a href="/items">Back to All Items</a>
+<%- include("partials/header") %>
+<section class="detail-hero">
+  <p class="eyebrow">Inventory item</p>
+  <h1 class="page-heading"><%= item.name %></h1>
+  <p class="lead"><%= item.description || "No description yet." %></p>
+  <div class="meta"><span class="pill">Category: <a href="/categories/<%= item.category_id %>"><%= item.category_name %></a></span><span class="pill">In stock: <%= item.number_in_stock %></span><span class="pill">Price: $<%= item.price %></span></div>
+  <div class="toolbar"><a class="button" href="/items/<%= item.id %>/update">Edit item</a><a class="button danger" href="/items/<%= item.id %>/delete">Delete item</a></div>
+</section>
+<a class="button secondary" href="/items">← All items</a>
+<%- include("partials/footer") %>
